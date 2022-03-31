@@ -1,0 +1,43 @@
+@import url('./reset.css');
+@import url('./bootstrap.min.css');
+
+.bg-primary{
+    background-color: green !important;
+}
+
+.nav-link,
+.navbar-brand{
+    color: #fff;
+}
+
+.nav-link:hover,
+.navbar-brand:hover{
+    color: #ccc
+}
+
+.carousel-item{
+    height: 20rem;
+    transition: .5s;
+}
+
+#carousel-section{
+    margin-bottom: 20px;
+}
+
+#carousel-section .container-fluid{
+   padding: 0%;
+}
+
+.carousel-inner{
+    transition: 1s;
+}
+
+#grid-card{
+    align-items: center;
+}
+
+#container-form{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
