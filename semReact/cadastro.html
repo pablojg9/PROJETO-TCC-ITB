@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShop</title>
+    <link rel="stylesheet" href="./CSS/main.css">
+
+
+</head>
+<body>
+
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-lg bg-primary ">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><strong>BookShop</strong></a>
+          <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi-list"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-lg-0 ">
+                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorias
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Promoções</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="contato.html" class="nav-link">Contato</a>
+                    </li>
+                    
+                    
+                        
+                    
+                
+                </ul>
+                <ul class="navbar-nav">
+                    <li>    
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-light" type="submit">Search</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html"> Quero me cadastrar</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link bi-person-circle " href="./paginas/login.html"> Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="carrinho.html" class="nav-link"><i class="bi-cart"></i></a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Fim navbar -->
+
+    <main>
+            <div class="container">
+                 <h1>Informe seus dados, por favor</h1>
+                <hr>
+                <form>
+                    <div class="row">
+                         <div class="col-sm-12 col-md-6">
+                            <fieldset class="row">
+                            <legend>Dados Pessoais</legend>
+                                 <div class="mb-3">
+                                      <label for="txtNome" class="form-label">Nome</label>
+                                      <input type="text" class="form-control" id="txtNome">
+                                 </div>
+
+                                 <div class="mb-3 col-md-6 col-xl-4">
+                                 
+                                      <label for="txtCPF"CPF class="form-label">CPF</label>
+                                      <span class="form-text">(somente números)</span>
+                                      <input type="text" class="form-control" id="txtCPF">
+                                 </div>
+
+                                 <div class="mb-3 col-md-6 col-xl-4">
+                                 <label for="txtDataNascimento" class="form-label">Data de Nascimento</label>
+                                <input type="date" class="form-control" id="txtDataNascimento">
+                                 </div>
+                            </fieldset> 
+
+                            <fieldset>
+                                <legend>Contatos</legend>
+                                <div class="mb-3 col-md-8">
+                                    <label for="txtEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="txtEmail">
+                               </div>
+
+                               <div class="mb-3 col-md-6">
+                                <label for="txtTelefone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="txtTelefone" placeholder="28999777666">
+                                <span class="form-text">(com DDD, somente números)</span>
+                           </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <fieldset class="row">
+                                <legend>Endereço</legend>
+                                <div class="mb-3 col-md-6 col-lg-4">
+                                    <label for="txtCEP" class="form-label">CEP</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="txtCEP">
+                                        <span class="input-group-text p-2">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6 col-lg-8 align-self-end" style="height:68px;">
+                                    <textarea class="form-control text-muted bg-light" disabled>
+                                        Digite o CEP para buscarmos o endereço.
+                                    </textarea>
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label for="txtNumero" class="form-label">Número</label>
+                                    <input type="text" class="form-control" id="txtNumero">
+                               </div>
+
+                               <div class="mb-3 col-md-8">
+                                <label for="txtComplemento" class="form-label">Complemento</label>
+                                <input type="text" class="form-control" id="txtComplemento">
+                           </div>
+
+                           <div class="mb-3">
+                            <label for="txtReferencia" class="form-label">Refêrencia</label>
+                            <input type="text" class="form-control" id="txtReferencia">
+                       </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>Senha de Acesso</legend>
+
+                                <div class="mb-3">
+                                    <label for="txtSenha" class="form-label">Senha</label>
+                                    <input type="password" class="form-control" id="txtSenha">
+                               </div>
+
+                               <div class="mb-3">
+                                <label for="txtConfSenha" class="form-label">Confirmação da Senha</label>
+                                <input type="password" class="form-control" id="txtConfSenha">
+                           </div>
+
+                            </fieldset>
+                        </div>
+                    </div> 
+                    <hr>
+                <div class="form-check mb-3">
+                 <input type="checkbox" class="form-check-input" value="" id="chkPromocoes">
+                <label for="chkPromocoes" class="form-check-label">Desejo receber informações sobre promoções.</label>
+                </div>
+                <div class="mb-3">
+                    <a class="btn btn-light btn-outline-danger" href="/index.html">Cancelar</a>
+                    <input type="button" value="Criar meu cadastro" class="btn btn-danger"
+                        onclick="window.location.href='/confirmarcadastro.html'">
+                </div>
+                 
+                </form>
+            </div>
+    </main>                         
+    
+   
+
+<!-- Footer -->
+
+    <footer class="border-top mt-5 text-muted bg-light">
+        <div class="container">
+            <div class="row py-3">
+            <div class="col-12 col-md-4 text-center text-md-left">
+                    &copy; 2022 - Bookshop Ltda ME <br>
+                    Rua Virtual Inexistente, 666, Cogulândia/SP <br>
+                    CNPJ 99.999.999/0001-99
+            </div>
+      
+            <div class="col-12 col-md-4 text-center">
+                    <a href="#" class="text-decoration-none text-dark">Política de Privacidade</a><br>
+                    <a href="#" class="text-decoration-none text-dark">Termos de Uso</a><br>
+                    <a href="#" class="text-decoration-none text-dark">Quem Somos</a><br>
+                    <a href="#" class="text-decoration-none text-dark">Trocas e Devoluções</a>
+            </div>
+
+        
+            <div class="col-12 col-md-4 text-center text-md-right">
+                <a href="#" class="text-decoration-none text-dark">Contato pelo site</a><br>
+                E-mail: <a href="mailto:email@dominio.com" class="text-decoration-none text-dark">email@dominio.com</a><br>
+                Telefone: <a href="phone:999999900" class="text-decoration-none text-dark">(11)99999-0000</a>
+            </div>
+        </div>
+    </footer>
+
+   <!-- Fim Footer -->
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
