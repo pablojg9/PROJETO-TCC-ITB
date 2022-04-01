@@ -1,5 +1,6 @@
 @import url('./reset.css');
 @import url('./bootstrap.min.css');
+@import url('./bootstrap-icons-1.8.1/bootstrap-icons.css');
 
 .bg-primary{
     background-color: green !important;
@@ -32,8 +33,15 @@
     transition: 1s;
 }
 
-#grid-card{
-    align-items: center;
+#cards-section img {
+    object-fit: contain;
+    background-color: #ccc;
+}
+
+.text1 {
+    height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #container-form{
@@ -41,3 +49,4 @@
     height: 100%;
     align-items: center;
 }
+
