@@ -1,47 +1,12 @@
 @import url('./reset.css');
 @import url('./bootstrap.min.css');
 @import url('./bootstrap-icons-1.8.1/bootstrap-icons.css');
+@import url('./alterações/navbar.css');
+@import url('./alterações/Card.css');
+@import url('./alterações/Carousel.css');
 
 .bg-primary{
     background-color: green !important;
-}
-
-.nav-link,
-.navbar-brand{
-    color: #fff;
-}
-
-.nav-link:hover,
-.navbar-brand:hover{
-    color: #ccc
-}
-
-.carousel-item{
-    height: 20rem;
-    transition: .5s;
-}
-
-#carousel-section{
-    margin-bottom: 20px;
-}
-
-#carousel-section .container-fluid{
-   padding: 0%;
-}
-
-.carousel-inner{
-    transition: 1s;
-}
-
-#cards-section img {
-    object-fit: contain;
-    background-color: #ccc;
-}
-
-.text1 {
-    height: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 #container-form{
@@ -49,4 +14,6 @@
     height: 100%;
     align-items: center;
 }
+
+
 

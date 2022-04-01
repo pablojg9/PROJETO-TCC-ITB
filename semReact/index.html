@@ -17,31 +17,47 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="#">BookShop</a>
           <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="bi-list"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorias
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="./paginas/login.html">Minha Conta</a>
+                        <a href="#" class="nav-link">Promoções</a>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categorias
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+                    
+                        
+                    
                 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
+                <ul class="navbar-nav">
+                    <li>    
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-light" type="submit">Search</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link bi-person-circle" href="./paginas/login.html"> Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link"><i class="bi-cart"></i></a>
+                    </li>
+                </ul>
+                
             </div>
         </div>
     </nav>
@@ -61,15 +77,21 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="./assets/img1.jpg" class="dblock w-100 h-100" alt="" >
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Carousel 1</h2>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="./assets/img2.jpg" class="block w-100 h-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2>aki é o carousel</h2>
+                    <h2>Carousel 2</h2>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="./assets/img3.jpg" class="block w-100 h-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Carousel 3</h2>
+                </div>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">

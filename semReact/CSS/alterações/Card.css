@@ -1,0 +1,10 @@
+#cards-section img {
+    object-fit: contain;
+    background-color: #ccc;
+}
+
+.text1 {
+    height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

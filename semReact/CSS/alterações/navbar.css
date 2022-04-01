@@ -1,0 +1,12 @@
+.nav-link, .navbar-brand{
+    color: #fff;
+}
+
+.nav-link a:visited {
+    color: #fff !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
