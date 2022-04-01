@@ -9,11 +9,26 @@
     background-color: green !important;
 }
 
+.btn-outline-primary{
+    color: green;
+    border-color: green;
+}
+.btn-outline-primary:hover{
+    background-color: green;
+    border-color: green;
+}
+
 #container-form{
     display: flex;
     height: 100%;
     align-items: center;
 }
 
+img {
+    object-fit: contain;
+    background-color: #ccc;
+}
 
-
+.info-produto{
+    text-align: right;
+}
