@@ -1,6 +1,6 @@
 package com.itb.tcc.amazbook.amazbook.modules.category.model;
 
-import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResquest;
+import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,7 @@ public class Category {
     @Column(name = "name_category", nullable = false)
     private String nameCategory;
 
-    public static Category of(CategoryResquest categoryResquest) {
+    public static Category of(CategoryRequest categoryResquest) {
         Category category = new Category();
         BeanUtils.copyProperties(categoryResquest, category);
         return category;

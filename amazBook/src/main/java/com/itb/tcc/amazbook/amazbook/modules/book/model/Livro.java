@@ -1,6 +1,6 @@
 package com.itb.tcc.amazbook.amazbook.modules.book.model;
 
-import com.itb.tcc.amazbook.amazbook.modules.book.dto.BookRequest;
+import com.itb.tcc.amazbook.amazbook.modules.book.dto.LivroRequest;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +24,8 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "PRODUCT")
-public class Book {
+@Table(name = "LIVRO")
+public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +45,7 @@ public class Book {
     private Double valueBook;
 
     // Data de publicação
-    @Column(name = "DATA_PUBLICACAO", nullable = false, updatable = false)
+    @Column(name = "DATA_PUBLICACAO", updatable = false)
     private LocalDate publicationDate;
 
     @ManyToOne
@@ -54,12 +54,13 @@ public class Book {
 
     @PrePersist
     public void getPersist() {
+        //System.out.println(LocalDate.now());
         publicationDate = LocalDate.now();
     }
 
-    public static Book of(BookRequest bookRequest) {
-        Book book = new Book();
-        BeanUtils.copyProperties(bookRequest, book);
-        return book;
+    public static Livro of(LivroRequest livroRequest) {
+        Livro livro = new Livro();
+        BeanUtils.copyProperties(livroRequest, livro);
+        return livro;
     }
 }
