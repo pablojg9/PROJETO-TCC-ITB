@@ -16,3 +16,5 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: create-drop
+  main:
+    allow-circular-references: true

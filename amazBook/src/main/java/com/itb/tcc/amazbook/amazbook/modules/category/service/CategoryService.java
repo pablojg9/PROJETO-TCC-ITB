@@ -1,11 +1,13 @@
 package com.itb.tcc.amazbook.amazbook.modules.category.service;
 
+import com.itb.tcc.amazbook.amazbook.config.exception.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.config.exception.ValidationException;
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryRequest;
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import com.itb.tcc.amazbook.amazbook.modules.category.repository.CategoryRepository;
 import com.itb.tcc.amazbook.amazbook.util.ErrorUtil;
+import com.itb.tcc.amazbook.amazbook.util.SuccessUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,15 @@ public class CategoryService {
                 .of(findById(id));
     }
 
+    public SuccessResponse deleteById(Integer id) {
+        validateInformedId(id);
+        categoryRepository
+                .deleteById(id);
+
+        return SuccessResponse
+                .create(SuccessUtil.DELETE_SUCCESS);
+    }
+
     public List<CategoryResponse> findByNameCategory(String nameCategory) {
         validateNameCategory(nameCategory);
         return categoryRepository
@@ -54,6 +65,16 @@ public class CategoryService {
 
         Category category = categoryRepository.save(Category.of(categoryRequest));
 
+        return CategoryResponse.of(category);
+    }
+
+    public CategoryResponse update(CategoryRequest categoryRequest, Integer id) {
+        validateBookDataInformed(categoryRequest);
+        validateInformedId(id);
+
+        Category category = Category.of(categoryRequest);
+        category.setId(id);
+        categoryRepository.save(category);
         return CategoryResponse.of(category);
     }
 

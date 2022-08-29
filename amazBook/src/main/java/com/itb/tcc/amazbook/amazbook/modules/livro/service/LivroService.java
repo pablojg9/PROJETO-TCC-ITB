@@ -73,6 +73,17 @@ public class LivroService {
                 .of(findById(id));
     }
 
+    public LivroResponse update(LivroRequest livroRequest, Integer id){
+        validateBookDataInformed(livroRequest);
+        validateInformedId(id);
+
+        Category category = categoryService.findById(livroRequest.getCategoryId());
+        Livro livro = Livro.of(livroRequest, category);
+        livro.setId(id);
+        livroRepository.save(livro);
+        return LivroResponse.of(livro);
+    }
+
     private void validateNameBook(String name){
         if(livroRepository.findByNameContainingIgnoreCase(name).isEmpty()){
             throw new ValidationException(ErrorUtil.BOOK_NOT_FOUND);
