@@ -1,9 +1,9 @@
-package com.itb.tcc.amazbook.amazbook.modules.book.controller;
+package com.itb.tcc.amazbook.amazbook.modules.livro.controller;
 
 import com.itb.tcc.amazbook.amazbook.config.exception.SuccessResponse;
-import com.itb.tcc.amazbook.amazbook.modules.book.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.book.dto.LivroResponse;
-import com.itb.tcc.amazbook.amazbook.modules.book.service.LivroService;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.livro.service.LivroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

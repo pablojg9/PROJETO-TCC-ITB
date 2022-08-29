@@ -1,7 +1,7 @@
-package com.itb.tcc.amazbook.amazbook.modules.book.model;
+package com.itb.tcc.amazbook.amazbook.modules.livro.model;
 
-import com.itb.tcc.amazbook.amazbook.modules.book.dto.LivroRequest;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -58,9 +58,17 @@ public class Livro {
         publicationDate = LocalDate.now();
     }
 
-    public static Livro of(LivroRequest livroRequest) {
+    public static Livro of(LivroRequest livroRequest, Category category) {
         Livro livro = new Livro();
         BeanUtils.copyProperties(livroRequest, livro);
-        return livro;
+        return Livro
+                .builder()
+                .name(livroRequest.getName())
+                .author(livroRequest.getAuthor())
+                .publishingCompany(livroRequest.getPublishingCompany())
+                .valueBook(livroRequest.getValueBook())
+                .publicationDate(livroRequest.getPublicationDate())
+                .category(category)
+                .build();
     }
 }

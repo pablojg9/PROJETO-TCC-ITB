@@ -1,11 +1,13 @@
-package com.itb.tcc.amazbook.amazbook.modules.book.service;
+package com.itb.tcc.amazbook.amazbook.modules.livro.service;
 
 import com.itb.tcc.amazbook.amazbook.config.exception.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.config.exception.ValidationException;
-import com.itb.tcc.amazbook.amazbook.modules.book.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.book.dto.LivroResponse;
-import com.itb.tcc.amazbook.amazbook.modules.book.model.Livro;
-import com.itb.tcc.amazbook.amazbook.modules.book.repository.LivroRepository;
+import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
+import com.itb.tcc.amazbook.amazbook.modules.category.service.CategoryService;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
+import com.itb.tcc.amazbook.amazbook.modules.livro.repository.LivroRepository;
 import com.itb.tcc.amazbook.amazbook.util.ErrorUtil;
 import com.itb.tcc.amazbook.amazbook.util.SuccessUtil;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class LivroService {
 
     private static final Double ZERO = 0.0;
     private final LivroRepository livroRepository;
+    private final CategoryService categoryService;
 
     public List<LivroResponse> findAll() {
         return livroRepository
@@ -33,12 +36,11 @@ public class LivroService {
 
     public LivroResponse save(LivroRequest livroRequest) {
         validateBookDataInformed(livroRequest);
-
-        Livro livro = livroRepository.save(Livro.of(livroRequest));
+        Category category = categoryService.findById(livroRequest.getCategoryId());
+        var livro = livroRepository.save(Livro.of(livroRequest, category));
 
         return LivroResponse.of(livro);
     }
-
 
     public SuccessResponse deleteById(Integer id) {
         validateInformedId(id);
@@ -72,8 +74,8 @@ public class LivroService {
     }
 
     private void validateNameBook(String name){
-        if(isEmpty(name)){
-            throw new ValidationException(ErrorUtil.NAME_EMPTY_BOOK);
+        if(livroRepository.findByNameContainingIgnoreCase(name).isEmpty()){
+            throw new ValidationException(ErrorUtil.BOOK_NOT_FOUND);
         }
     }
 
@@ -90,6 +92,10 @@ public class LivroService {
 
         if (isEmpty(livroRequest.getAuthor())) {
             throw new ValidationException(ErrorUtil.EMPTY_PUBLISHER);
+        }
+
+        if (livroRequest.getValueBook() <= ZERO) {
+            throw new ValidationException(ErrorUtil.BOOK_VALUE);
         }
     }
 }

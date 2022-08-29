@@ -1,8 +1,8 @@
-package com.itb.tcc.amazbook.amazbook.modules.book.dto;
+package com.itb.tcc.amazbook.amazbook.modules.livro.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
-import com.itb.tcc.amazbook.amazbook.modules.book.model.Livro;
+import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import lombok.Builder;
 import lombok.Data;
 

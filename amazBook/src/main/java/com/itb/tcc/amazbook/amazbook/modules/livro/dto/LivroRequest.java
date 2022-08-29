@@ -1,5 +1,6 @@
-package com.itb.tcc.amazbook.amazbook.modules.book.dto;
+package com.itb.tcc.amazbook.amazbook.modules.livro.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class LivroRequest {
     private String publishingCompany;
     @JsonProperty("value_book")
     private Double valueBook;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate publicationDate;
     private Integer categoryId;
 }

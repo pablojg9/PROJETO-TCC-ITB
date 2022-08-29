@@ -1,6 +1,6 @@
-package com.itb.tcc.amazbook.amazbook.modules.book.repository;
+package com.itb.tcc.amazbook.amazbook.modules.livro.repository;
 
-import com.itb.tcc.amazbook.amazbook.modules.book.model.Livro;
+import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -28,6 +28,18 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
+    public Category findById(Integer id) {
+        validateInformedId(id);
+        return categoryRepository
+                .findById(id)
+                .orElseThrow(() -> new ValidationException(ErrorUtil.ID_EMPTY));
+    }
+
+    public CategoryResponse findByIdResponse(Integer id){
+        return CategoryResponse
+                .of(findById(id));
+    }
+
     public List<CategoryResponse> findByNameCategory(String nameCategory) {
         validateNameCategory(nameCategory);
         return categoryRepository
