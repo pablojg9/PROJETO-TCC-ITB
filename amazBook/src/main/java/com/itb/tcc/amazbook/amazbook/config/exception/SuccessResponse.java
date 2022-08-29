@@ -15,7 +15,6 @@ public class SuccessResponse {
     private Integer status;
     private String message;
 
-
     public static SuccessResponse create(String message) {
 
         return SuccessResponse
@@ -24,5 +23,4 @@ public class SuccessResponse {
                 .message(message)
                 .build();
     }
-
 }
