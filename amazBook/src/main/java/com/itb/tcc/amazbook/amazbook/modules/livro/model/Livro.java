@@ -31,13 +31,13 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "NOME_LIVRO")
+    @Column(name = "NOME_LIVRO", length = 120)
     private String name;
 
-    @Column(name = "AUTOR", nullable = false)
+    @Column(name = "AUTOR", nullable = false, length = 120)
     private String author;
 
-    @Column(name = "EDITORA", nullable = false)
+    @Column(name = "EDITORA", nullable = false, length = 200)
     //editora
     private String publishingCompany;
 
