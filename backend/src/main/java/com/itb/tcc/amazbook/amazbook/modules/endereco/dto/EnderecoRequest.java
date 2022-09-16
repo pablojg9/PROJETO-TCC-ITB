@@ -12,4 +12,5 @@ public class EnderecoRequest {
     private String cidade;
     private String estado;
     private Short numero;
+    private Integer userId;
 }

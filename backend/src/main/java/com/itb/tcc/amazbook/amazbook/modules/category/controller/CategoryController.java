@@ -31,27 +31,27 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.findAll());
     }
 
-    @GetMapping("name/{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<List<CategoryResponse>> findByNameCategory(@PathVariable String name) {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.findByNameCategory(name));
     }
 
-    @GetMapping("id/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<CategoryResponse> findById(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.findByIdResponse(id));
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<CategoryResponse> update(@RequestBody CategoryRequest categoryRequest, @PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.update(categoryRequest, id));
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<SuccessResponse> deleteById(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.deleteById(id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest categoryRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(categoryRequest));
     }

@@ -2,9 +2,9 @@ package com.itb.tcc.amazbook.amazbook.modules.endereco.model;
 
 
 import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoRequest;
-import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoResponse;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Endereco {
@@ -53,9 +54,20 @@ public class Endereco {
     @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_cliente"))
     private Usuario usuario;
 
-    public static Endereco of(EnderecoRequest enderecoRequest) {
+    public static Endereco of(EnderecoRequest enderecoRequest, Usuario usuario) {
         Endereco endereco = new Endereco();
         BeanUtils.copyProperties(enderecoRequest, endereco);
-        return endereco;
+        return Endereco
+                .builder()
+                .id(endereco.getId())
+                .cep(enderecoRequest.getCep())
+                .logradouro(enderecoRequest.getLogradouro())
+                .complemento(enderecoRequest.getComplemento())
+                .bairro(enderecoRequest.getBairro())
+                .cidade(enderecoRequest.getCidade())
+                .estado(enderecoRequest.getEstado())
+                .numero(enderecoRequest.getNumero())
+                .usuario(usuario)
+                .build();
     }
 }

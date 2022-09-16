@@ -28,8 +28,15 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeHttpRequests()// Ativação a restrição a URL
-                .antMatchers("/api/category/**",
-                                                "/usuarios/save")
+                .antMatchers(        "/api/category/",
+                                                "/api/category/name/**",
+                                                "/api/category/id/**",
+                                                "/api/book/",
+                                                "/api/book/name/**",
+                                                "/api/book/id/**",
+                                                "/api/usuarios/save",
+                                                "/api/endereco/**"
+                                                )
                 .permitAll()
                 .anyRequest()
                 .authenticated()

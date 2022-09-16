@@ -64,7 +64,8 @@ public class CategoryService {
     public CategoryResponse save(CategoryRequest categoryRequest) {
         validateBookDataInformed(categoryRequest);
 
-        Category category = categoryRepository.save(Category.of(categoryRequest));
+        Category category = categoryRepository
+                .save(Category.of(categoryRequest));
 
         return CategoryResponse.of(category);
     }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/book")
+@RequestMapping(value = "/api/book")
 @RequiredArgsConstructor
 public class LivroController {
 
@@ -30,12 +30,12 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.findAll());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<LivroResponse> findById(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.findByIdResponse(id));
     }
 
-    @GetMapping("name/{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<List<LivroResponse>> findByName(@PathVariable String name) {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.findByNameBook(name));
     }
@@ -45,7 +45,7 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(livroService.save(livroRequest));
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<LivroResponse> update(@RequestBody LivroRequest livroRequest, @PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.update(livroRequest, id));
     }

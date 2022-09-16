@@ -7,7 +7,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class LivroRequest {
+public class    LivroRequest {
 
     private String name;
     private String author;

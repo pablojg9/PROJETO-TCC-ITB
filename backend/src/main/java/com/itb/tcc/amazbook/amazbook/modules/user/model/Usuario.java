@@ -49,7 +49,7 @@ public class Usuario implements UserDetails {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
-    private Set<Endereco> remedios = new HashSet<>();
+    private Set<Endereco> enderecos = new HashSet<>();
     public Usuario(){}
 
     public Usuario(Integer id, String nome, String email, String senha, String token) {
