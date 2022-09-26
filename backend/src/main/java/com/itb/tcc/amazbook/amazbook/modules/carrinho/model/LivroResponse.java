@@ -1,15 +1,18 @@
-package com.itb.tcc.amazbook.amazbook.modules.livro.dto;
+package com.itb.tcc.amazbook.amazbook.modules.carrinho.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class LivroResponse {
 
     private Integer id;
@@ -20,6 +23,12 @@ public class LivroResponse {
     private LocalDate publicationDate;
     private Double valueBook;
     private CategoryResponse category;
+
+    public LivroResponse(Livro livro) {
+        name = livro.getName();
+        author = livro.getAuthor();
+        valueBook = livro.getValueBook();
+    }
 
     public static LivroResponse of(Livro livro) {
         return LivroResponse

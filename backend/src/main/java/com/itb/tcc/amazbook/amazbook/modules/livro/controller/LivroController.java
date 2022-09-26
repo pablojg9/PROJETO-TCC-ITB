@@ -1,8 +1,7 @@
 package com.itb.tcc.amazbook.amazbook.modules.livro.controller;
 
-import com.itb.tcc.amazbook.amazbook.exceptions.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.carrinho.model.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.service.LivroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,7 +50,8 @@ public class LivroController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<SuccessResponse> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<LivroResponse> deleteById(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.deleteById(id));
     }
 }
+//TODO - FAZER O DELETE FUNCIONAR NO ENDERECO, FAZER O CARRINHO E A COMPRA;

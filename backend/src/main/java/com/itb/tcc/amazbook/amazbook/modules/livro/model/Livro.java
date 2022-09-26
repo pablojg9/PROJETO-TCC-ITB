@@ -2,6 +2,7 @@ package com.itb.tcc.amazbook.amazbook.modules.livro.model;
 
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
+import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,6 +52,10 @@ public class Livro {
     @ManyToOne
     @JoinColumn(name = "FK_CATEGORY", nullable = false)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_USUARIO")
+    private Usuario usuario;
 
     @PrePersist
     public void getPersist() {

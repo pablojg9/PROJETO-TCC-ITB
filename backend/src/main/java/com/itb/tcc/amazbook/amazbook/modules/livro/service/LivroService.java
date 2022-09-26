@@ -1,16 +1,15 @@
 package com.itb.tcc.amazbook.amazbook.modules.livro.service;
 
-import com.itb.tcc.amazbook.amazbook.exceptions.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.exceptions.ValidationException;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import com.itb.tcc.amazbook.amazbook.modules.category.service.CategoryService;
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.carrinho.model.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.livro.repository.LivroRepository;
 
 import com.itb.tcc.amazbook.amazbook.utils.ErrorUtil;
-import com.itb.tcc.amazbook.amazbook.utils.SuccessUtil;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,14 +42,23 @@ public class LivroService {
         return LivroResponse.of(livro);
     }
 
-    public SuccessResponse deleteById(Integer id) {
+    public LivroResponse deleteById(Integer id) {
         validateInformedId(id);
 
-        livroRepository
-                .deleteById(id);
+        LivroResponse livroResponse = livroRepository
+                .findById(id)
+                .map(LivroResponse::of)
+                .orElseThrow(() -> new ValidationException(ErrorUtil.CLIENTE_EMAIL_EMPTY));
 
-        return SuccessResponse
-                .create(SuccessUtil.DELETE_SUCCESS);
+        if (livroResponse != null) {
+            livroRepository
+                    .deleteRemedioByWithId(id);
+        } else {
+            throw new ValidationException(ErrorUtil.ID_EMPTY);
+        }
+
+
+        return livroResponse;
     }
 
     public List<LivroResponse> findByNameBook(String name) {
@@ -79,6 +87,7 @@ public class LivroService {
         validateInformedId(id);
 
         Category category = categoryService.findById(livroRequest.getCategoryId());
+
         Livro livro = Livro.of(livroRequest, category);
         livro.setId(id);
         livroRepository.save(livro);

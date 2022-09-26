@@ -1,5 +1,6 @@
 package com.itb.tcc.amazbook.amazbook.modules.endereco.service;
 
+import com.itb.tcc.amazbook.amazbook.exceptions.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.exceptions.ValidationException;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoRequest;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoResponse;
@@ -9,6 +10,7 @@ import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import com.itb.tcc.amazbook.amazbook.modules.user.service.UsuarioService;
 import com.itb.tcc.amazbook.amazbook.utils.ErrorUtil;
+import com.itb.tcc.amazbook.amazbook.utils.SuccessUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,15 @@ public class EnderecoService {
         Endereco endereco = enderecoRepository.save(Endereco.of(enderecoRequest, usuario));
         return EnderecoResponse.of(endereco);
 
+    }
+
+    public SuccessResponse deleteByid(Integer id) {
+        validateInformedId(id);
+
+        enderecoRepository.deleteById(id);
+
+        return SuccessResponse
+                .create(SuccessUtil.DELETE_SUCCESS);
     }
 
     private void validateInformedId(Integer id) {

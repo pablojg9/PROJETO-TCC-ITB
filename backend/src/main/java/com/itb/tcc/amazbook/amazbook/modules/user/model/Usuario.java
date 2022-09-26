@@ -2,6 +2,7 @@ package com.itb.tcc.amazbook.amazbook.modules.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.model.Endereco;
+import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.user.dto.UsuarioRequest;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -50,6 +51,10 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Endereco> enderecos = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Livro> livros = new HashSet<>();
     public Usuario(){}
 
     public Usuario(Integer id, String nome, String email, String senha, String token) {

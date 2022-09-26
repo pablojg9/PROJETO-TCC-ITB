@@ -3,6 +3,7 @@ package com.itb.tcc.amazbook.amazbook.modules.user.service;
 
 import com.itb.tcc.amazbook.amazbook.exceptions.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.exceptions.ValidationException;
+import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.user.dto.UsuarioRequest;
 import com.itb.tcc.amazbook.amazbook.modules.user.dto.UsuarioResponse;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
@@ -13,10 +14,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.springframework.util.ObjectUtils.caseInsensitiveValueOf;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
@@ -24,6 +26,8 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+
+    private Set<Livro> livros = new HashSet<>();
 
     public List<UsuarioResponse> findAll() {
         return usuarioRepository
@@ -52,6 +56,11 @@ public class UsuarioService {
         return SuccessResponse.create(SuccessUtil.DELETE_SUCCESS);
 
     }
+
+    public void saveLivro(Livro livro) {
+        System.out.println("Livro => " + livros.add(livro));
+    }
+
 
     public UsuarioResponse save(UsuarioRequest usuarioRequest){
         validateClienteDataInformed(usuarioRequest);

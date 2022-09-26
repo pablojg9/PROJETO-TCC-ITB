@@ -3,7 +3,7 @@ package com.itb.tcc.amazbook.amazbook.modules.category.controller;
 
 import com.itb.tcc.amazbook.amazbook.exceptions.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryRequest;
-import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
+import com.itb.tcc.amazbook.amazbook.modules.carrinho.model.CategoryResponse;
 import com.itb.tcc.amazbook.amazbook.modules.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,14 +1,10 @@
 package com.itb.tcc.amazbook.amazbook.modules.user.dto;
 
-import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
-import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoResponse;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.model.Endereco;
-import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 import java.util.Set;
 
@@ -21,6 +17,7 @@ public class UsuarioResponse {
     private String login;
     private String senha;
     private Set<Endereco> enderecos;
+    private Set<Livro> livros;
 
     public static UsuarioResponse of(Usuario usuario) {
         return UsuarioResponse
@@ -30,6 +27,7 @@ public class UsuarioResponse {
                 .login(usuario.getLogin())
                 .senha(usuario.getSenha())
                 .enderecos(usuario.getEnderecos())
+                .livros(usuario.getLivros())
                 .build();
     }
 }

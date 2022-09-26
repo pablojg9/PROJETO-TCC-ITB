@@ -4,7 +4,7 @@ package com.itb.tcc.amazbook.amazbook.modules.category.service;
 import com.itb.tcc.amazbook.amazbook.exceptions.SuccessResponse;
 import com.itb.tcc.amazbook.amazbook.exceptions.ValidationException;
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryRequest;
-import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
+import com.itb.tcc.amazbook.amazbook.modules.carrinho.model.CategoryResponse;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import com.itb.tcc.amazbook.amazbook.modules.category.repository.CategoryRepository;
 import com.itb.tcc.amazbook.amazbook.utils.ErrorUtil;

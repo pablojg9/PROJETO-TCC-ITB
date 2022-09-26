@@ -1,4 +1,4 @@
-package com.itb.tcc.amazbook.amazbook.modules.category.dto;
+package com.itb.tcc.amazbook.amazbook.modules.carrinho.model;
 
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import lombok.Data;
