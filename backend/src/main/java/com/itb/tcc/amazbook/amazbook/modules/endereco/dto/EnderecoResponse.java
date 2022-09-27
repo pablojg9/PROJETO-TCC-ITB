@@ -4,9 +4,6 @@ import com.itb.tcc.amazbook.amazbook.modules.endereco.model.Endereco;
 import com.itb.tcc.amazbook.amazbook.modules.user.dto.UsuarioResponse;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
-
-import java.util.Set;
 
 @Data
 @Builder

@@ -4,7 +4,7 @@ import com.itb.tcc.amazbook.amazbook.exceptions.ValidationException;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import com.itb.tcc.amazbook.amazbook.modules.category.service.CategoryService;
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.carrinho.model.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.livro.controller.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.livro.repository.LivroRepository;
 

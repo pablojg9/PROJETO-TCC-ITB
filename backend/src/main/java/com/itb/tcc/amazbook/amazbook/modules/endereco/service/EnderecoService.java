@@ -6,7 +6,6 @@ import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoRequest;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.dto.EnderecoResponse;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.model.Endereco;
 import com.itb.tcc.amazbook.amazbook.modules.endereco.repository.EnderecoRepository;
-import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import com.itb.tcc.amazbook.amazbook.modules.user.service.UsuarioService;
 import com.itb.tcc.amazbook.amazbook.utils.ErrorUtil;

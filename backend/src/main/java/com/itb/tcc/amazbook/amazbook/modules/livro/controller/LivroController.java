@@ -1,7 +1,6 @@
 package com.itb.tcc.amazbook.amazbook.modules.livro.controller;
 
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.carrinho.model.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.service.LivroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
