@@ -1,6 +1,7 @@
 package com.itb.tcc.amazbook.amazbook.modules.livro.model;
 
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
+import com.itb.tcc.amazbook.amazbook.modules.file.model.FilesBook;
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import lombok.AllArgsConstructor;
@@ -9,13 +10,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -46,8 +52,12 @@ public class Livro {
     private Double valueBook;
 
     // Data de publicação
-    @Column(name = "DATA_PUBLICACAO", updatable = false)
-    private LocalDate publicationDate;
+    /*@Column(name = "DATA_PUBLICACAO", updatable = false)
+    private LocalDate publicationDate;*/
+
+    /*@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "files_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "files_fk"))
+    private FilesBook filesBook;*/
 
     @ManyToOne
     @JoinColumn(name = "FK_CATEGORY", nullable = false)
@@ -57,11 +67,11 @@ public class Livro {
     @JoinColumn(name = "FK_USUARIO")
     private Usuario usuario;
 
-    @PrePersist
+    /*@PrePersist
     public void getPersist() {
         //System.out.println(LocalDate.now());
         publicationDate = LocalDate.now();
-    }
+    } */
 
     public static Livro of(LivroRequest livroRequest, Category category) {
         Livro livro = new Livro();
@@ -72,8 +82,9 @@ public class Livro {
                 .author(livroRequest.getAuthor())
                 .publishingCompany(livroRequest.getPublishingCompany())
                 .valueBook(livroRequest.getValueBook())
-                .publicationDate(livroRequest.getPublicationDate())
+                //.publicationDate(livroRequest.getPublicationDate())
                 .category(category)
+               // .filesBook(filesBook)
                 .build();
     }
 }

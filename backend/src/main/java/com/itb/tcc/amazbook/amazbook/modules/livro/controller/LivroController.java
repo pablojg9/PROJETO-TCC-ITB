@@ -1,6 +1,7 @@
 package com.itb.tcc.amazbook.amazbook.modules.livro.controller;
 
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.service.LivroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,6 +31,11 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.findAll());
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<LivroResponse>> findByCategoryId(@PathVariable Integer categoryId) {
+        return ResponseEntity.status(HttpStatus.OK).body(livroService.findByCategoryId(categoryId));
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<LivroResponse> findById(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.findByIdResponse(id));
@@ -38,7 +46,7 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.OK).body(livroService.findByNameBook(name));
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<LivroResponse> save(@RequestBody LivroRequest livroRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(livroService.save(livroRequest));
     }

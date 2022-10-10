@@ -1,13 +1,12 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
-import api from '../api/Api';
+import Api from '../api/Api';
 
 const Login = () => {
 
     const navigate = useNavigate()
-
+    
     const [login, setLogin] = useState("");
     const [senha, setSenha] = useState("");
 
@@ -19,48 +18,46 @@ const Login = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        await api.post("/login", data, {headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:8081',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-        }}).then((response) => {
+        await Api.post("/login", data).then((response) => {
             localStorage.setItem("token", response.data.Authorization);
+            console.log(login)
+            console.log(response.data.Authorization);
+            navigate("/");
+
             alert("deu certo")
         }).catch((error) => {
             console.log(error);
-        })
-
+        });
     }
-
-
   return (
 
-    <Container>
-        <Logo Logo onClick={() => navigate('/')}>
-           <img src="./logo.png" alt="" />
-        </Logo>
+<Container>
+            <Logo Logo onClick={() => navigate('/')}>
+                <img src="./logo.png" alt="" />
+            </Logo>
 
-        <FormContainer onSubmit={onSubmit}>
-            <h3>Sign-In</h3>
+            <FormContainer onSubmit={onSubmit}>
+                <h3>Sign-In</h3>
 
-            <InputContainer>
-                <p>Email</p>
-                <input onChange={(e) => setLogin(e.target.value)} type="email" placeholder='example@gmail.com'/>
-            </InputContainer>
+                <InputContainer>
+                    <p>Email</p>
+                    <input onChange={(e) => setLogin(e.target.value)} type="email" placeholder='example@gmail.com' />
+                </InputContainer>
 
-            <InputContainer>
-                <p>Password</p>
-                <input type="Password" onChange={(e) => setSenha(e.target.value)} placeholder='****'/>
-            </InputContainer>
+                <InputContainer>
+                    <p>Password</p>
+                    <input type="Password" onChange={(e) => setSenha(e.target.value)} placeholder='****' />
+                </InputContainer>
 
-            <LoginButton>Login</LoginButton>
+                <LoginButton>Login</LoginButton>
 
-            <InfoText>By continuingm, you agree to Bookshop <span>Conditions of Use</span> and <span>Privacy Note .</span></InfoText>
-        </FormContainer>
+                <InfoText>By continuingm, you agree to Bookshop <span>Conditions of Use</span> and <span>Privacy Note .</span></InfoText>
+            </FormContainer>
 
-        <SignUpButton>Criar conta na BookShop</SignUpButton>
+            <SignUpButton onClick={() => navigate("/signup")}>Criar conta na BookShop</SignUpButton>
 
 
-    </Container>
+        </Container>
   )
 }
 
@@ -73,14 +70,14 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `;  
 
 const Logo = styled.div`
-    width: 120px;
-    margin-bottom: 20px;
+    cursor: pointer;
 
     img{
-        width: 120px;
+        width: 500px;
     }
 `;
 
@@ -122,7 +119,7 @@ const InputContainer = styled.div`
         margin-top: 5px;
 
         &:hover{
-            border: 1px solid purple
+            border: 1px solid black;
         }
     }
 `;
@@ -148,6 +145,10 @@ const LoginButton = styled.button`
     outline: none;
     border-radius: 10px;
     margin-top: 30px;
+
+    &:hover{
+        border: 2px solid black;
+    }
 `;
 
 const InfoText = styled.p`

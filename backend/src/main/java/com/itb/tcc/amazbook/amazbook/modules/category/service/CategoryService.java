@@ -84,8 +84,8 @@ public class CategoryService {
         if(isEmpty(name)){
             throw new ValidationException(ErrorUtil.NAME_EMPTY_BOOK);
         }
-
     }
+
     private void validateInformedId(Integer id) {
         if(isEmpty(id)) {
             throw new ValidationException(ErrorUtil.ID_EMPTY);

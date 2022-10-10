@@ -1,44 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import Rating from '@material-ui/lab/Rating';
 import { useStateValue } from '../StateProvider';
 
+const Card = ({ id, image, price, rating, title, author, category }) => {
 
-function Card({ id, image, price, rating, title }) {
-
-    const [{basket}, dispatch] = useStateValue()
+    const [{ basket }, dispatch] = useStateValue()
 
     const addToBasket = (e) => {
         e.preventDefault()
         console.log('basket >>>', basket)
         dispatch({
-            type:'ADD_TO_BASKET',
-            item:{
+            type: 'ADD_TO_BASKET',
+            item: {
                 id,
                 title,
+                author,
+                category: {},
                 price,
                 image,
                 rating,
+
             },
         });
     };
 
-  return (
-    <Container>
-        <Image>
-            <img src={image} alt="" />
-        </Image>
-        <Description>
-            <h5>{title}</h5>
+    return (
+        <Container>
+            <Image>
+                <img src={image} alt="" />
+            </Image>
+            <Description>
+                <h5>Titulo: {title}</h5>
 
-            <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+                <h6>Autor: {author}</h6>
+                <h6>Categoria: {category}</h6>
 
-            <p>R${price}</p>
-            
-            <button onClick={addToBasket}>Adicionar ao Carrinho</button>
-        </Description>
-    </Container>
-  )
+                <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+
+                <p>R${price}</p>
+
+                <button onClick={addToBasket}>Adicionar ao Carrinho</button>
+            </Description>
+        </Container>
+    )
 }
 
 const Container = styled.div`
@@ -96,7 +101,7 @@ const Description = styled.div`
         margin-left: 20%;
 
         &:hover{
-            border: 3px solid black;
+            border: 2px solid black;
         }
 
     }

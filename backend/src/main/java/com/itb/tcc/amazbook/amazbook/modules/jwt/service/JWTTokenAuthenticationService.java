@@ -1,6 +1,7 @@
 package com.itb.tcc.amazbook.amazbook.modules.jwt.service;
 
 import com.itb.tcc.amazbook.amazbook.modules.jwt.context.ApplicationContextLoad;
+import com.itb.tcc.amazbook.amazbook.modules.user.dto.UsuarioResponse;
 import com.itb.tcc.amazbook.amazbook.modules.user.model.Usuario;
 import com.itb.tcc.amazbook.amazbook.modules.user.repository.UsuarioRepository;
 import com.itb.tcc.amazbook.amazbook.utils.MessageUtil;
@@ -54,6 +55,7 @@ public class JWTTokenAuthenticationService {
                 .updateTokenUser(JWT, username);
 
         // escreve o token como resposta do corpo http - JSON
+
         response.getWriter().write("{\"Authorization\": \""+ token+"\"}");
     }
 
@@ -77,11 +79,11 @@ public class JWTTokenAuthenticationService {
                             .getApplicationContext()
                             .getBean(UsuarioRepository.class)
                             .findUsuarioByLogin(user);
-
                     if (usuario != null) {
                         if (cleanToken.equalsIgnoreCase(usuario.getToken())) {
                             return new UsernamePasswordAuthenticationToken(
                                     usuario.getLogin(), usuario.getSenha(), usuario.getAuthorities());
+
                         }
                     }
                 }

@@ -1,11 +1,12 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import Api from '../api/Api';
 
-import api from '../api/Api';
 
 const SignUp = () => {
 
+    const navigate = useNavigate()
 
     const [nome, setNome] = useState("");
     const [login, setLogin] = useState("");
@@ -19,19 +20,25 @@ const SignUp = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await api.post("/api/usuarios/save", data).then((response) => {
-            console.log(response);
+        await Api.post("/api/usuarios/save", data).then((response) => {
+            console.log(response.data.nome);
+            
+            alert("cadastro com sucesso");
+            localStorage.setItem("nome", response.data.nome);
+
+            navigate("/login")
         }).catch((error) => {
             console.log(error);
-        })
+        });
     }
-    return (
-        <Container>
-            <Logo>
-                <img src="./logo.png" alt="" />
-            </Logo>
 
-            <FormContainer onSubmit={onSubmit}>
+  return (
+    <Container>
+       <Logo onClick={() => navigate('/')}>
+           <img src="./logo.png" alt="" />
+        </Logo>
+
+        <FormContainer onSubmit={onSubmit}>
                 <h3>Sign-In</h3>
 
                 <InputContainer>
@@ -53,9 +60,9 @@ const SignUp = () => {
                 <InfoText>By continuingm, you agree to Bookshop <span>Conditions of Use</span> and <span>Privacy Note .</span></InfoText>
             </FormContainer>
 
-            <LoginButton>Voltar ao Login</LoginButton>
-        </Container>
-    )
+        <LoginButton onClick={() => navigate('/login')}>Voltar ao Login</LoginButton>
+    </Container>
+  )
 }
 
 const Container = styled.div`   
@@ -67,15 +74,14 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
+`; 
 
 
 const Logo = styled.div`
-    width: 120px;
-    margin-bottom: 20px;
+    cursor: pointer;
 
     img{
-        width: 120px;
+        width: 500px;
     }
 `;
 
@@ -117,7 +123,7 @@ const InputContainer = styled.div`
         margin-top: 5px;
 
         &:hover{
-            border: 1px solid purple
+            border: 1px solid black;
         }
     }
 `;
@@ -155,6 +161,10 @@ const LoginButton = styled.button`
     outline: none;
     border-radius: 10px;
     margin-top: 30px;
+
+    &:hover{
+        border: 2px solid black;
+    }
 `;
 
 

@@ -10,16 +10,15 @@ import DropdownCategory from './DropdownCategory';
 import BookCarousel from './BookCarousel';
 import BestSellerCarousel from './BestSellerCarousel';
 import PaymentMethod from './PaymentMethod';
-import Api from '../api/Api';
 
 const Home = () => {
 
-  const [livros, setLivros] = useState("");
+  const [livroSearch, setLivroSearch] = useState([]);
 
   useEffect(() => {
-    Api.get("/api/book").then((response) => {
-      setLivros(response.data);
-    })
+    setLivroSearch(JSON.parse(localStorage.getItem("livros")));
+    console.log("aqui", livroSearch);
+
   }, [])
 
   return (
@@ -28,11 +27,11 @@ const Home = () => {
 
       <DropdownCategory />
 
-      <Carousel />
+  
 
       <Main>
         {
-          livros && livros.map((livro) => (
+          livroSearch && livroSearch.map((livro) => (
             <Card
               id={livro.id}
               image={"https://books.google.com.br/books/publisher/content?id=hjcQCwAAQBAJ&hl=pt-BR&pg=PP1&img=1&zoom=3&bul=1&sig=ACfU3U0MuXkWY6t7UZcHk_zr0rBIUtBhwQ&w=1280"}

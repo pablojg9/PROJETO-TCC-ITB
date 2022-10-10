@@ -10,7 +10,7 @@ function Feature() {
             </BgSVG>
             <FeatureText>
                 <FeatureTitle>Entrega Rápida</FeatureTitle>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio repudiandae voluptate hic aliquid fugiat praesentiu</p>
+                <p>Entrega porta a porta rápida e conveniente</p>
             </FeatureText>
         </FeatureContent>
         <FeatureContent>
@@ -19,7 +19,7 @@ function Feature() {
             </BgSVG>
                 <FeatureText>
                     <FeatureTitle>Pagamento Seguro</FeatureTitle>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus obcaecati dolorem </p>
+                    <p>Pague com os métodos mais conhecidos e confiáveis do mundo.</p>
                 </FeatureText>
         </FeatureContent>
         <FeatureContent>
@@ -28,7 +28,7 @@ function Feature() {
             </BgSVG>
                 <FeatureText>
                     <FeatureTitle>Melhor Qualidade</FeatureTitle>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam nulla explicabo </p>
+                    <p>Controle de qualidade abrangente e preços acessíveis</p>
                 </FeatureText>
         </FeatureContent>
         <FeatureContent>
@@ -37,7 +37,7 @@ function Feature() {
             </BgSVG>
                 <FeatureText>
                     <FeatureTitle>Garantia de Retorno</FeatureTitle>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque dignissimos </p>
+                    <p>Atendimento 24h todos os dias para facilitar as suas compras.</p>
                 </FeatureText>
         </FeatureContent>
 </Container>
@@ -48,7 +48,7 @@ function Feature() {
 const Container = styled.div`
     width: 100%;
     height: 250px;
-    margin-top: 100px;
+    margin-top: 50px;
     display: grid;
     grid-auto-flow: column;    
     justify-content: space-evenly;
@@ -59,40 +59,67 @@ const Container = styled.div`
       grid-template-rows: repeat(2, 50%);
       grid-gap: 0;
       padding: 40px 0 40px 0;
+      margin-bottom: 130px;
     }
 
     @media only screen and (max-width: 827px){
        display: block;    
        height: 600px;
-
     }
 
 `;
 
 
-
 const FeatureContent = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 320px;
     height: 100px;
-    padding-top: 8px;
 
     @media only screen and (max-width: 827px){
         padding: 25px;
         margin: auto;
+
+        &:nth-child(2){
+            margin-top: 30px;
+        }
+
+        &:nth-child(3){
+            margin-top: 30px;
+        }
+
+        &:nth-child(4){
+            margin-top: 30px;
+        }
+
     }
+
+    @media only screen and ( min-width: 850px ) and (max-width: 1300px) {
+        &:nth-child(2){
+            margin-top: 120px;
+        }
+        &:nth-child(4){
+            margin-top: 100px;
+        }
+
+    }
+
+   
 `;
 
 const BgSVG = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    padding: 2px;
-    height: 50px;
-    background-color: #6C5DD3;
+    width: 30px;
+    padding: 5px;
     margin-top: 15px;
-    border-radius: 100px;
+    margin-bottom: 10px;
+    background-color: #6C5DD3;
+    border-radius: 20px;
+
 
     svg{
         height:30px;
@@ -101,6 +128,7 @@ const BgSVG = styled.div`
 
 const FeatureText = styled.div`
     margin-left: 20px;
+    text-align: center;
 
     p{
         margin-top: 5px;
@@ -110,6 +138,8 @@ const FeatureText = styled.div`
 const FeatureTitle = styled.span`
     font-size: 15px;
     font-weight: bold;
+    text-align: center;
+
 `;
 
 

@@ -2,7 +2,7 @@ package com.itb.tcc.amazbook.amazbook.modules.carrinho.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.itb.tcc.amazbook.amazbook.modules.livro.controller.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.livro.repository.LivroRepository;
 import lombok.Data;

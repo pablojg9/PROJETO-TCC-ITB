@@ -16,5 +16,18 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: create-drop
+    show-sql: true
   main:
     allow-circular-references: true
+
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 2MB
+      max-request-size: 2MB
+
+  file:
+    upload-dir: D:\\Pablo\\Documentos\\
+

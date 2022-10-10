@@ -28,9 +28,9 @@ const Carousel = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
       {
@@ -45,22 +45,15 @@ const Carousel = () => {
 
 return (
   <Container>
-    
       <Slider {...settings}>
         <div>
-          <img src="./c1.png" alt="" />
+          <img src="./banner1.png" alt="" />
         </div>
         <div>
-         <img src="./c2.png" alt="" />
+         <img src="./Banner2.png" alt="" />
         </div>
         <div>
-         <img src="./c3.png" alt="" />
-        </div>
-        <div>
-         <img src="./c4.png" alt="" />
-        </div>
-        <div>
-          <img src="./c5.png" alt="" />
+         <img src="./Banner3.png" alt="" />
         </div>
       </Slider>
   </Container>
@@ -68,8 +61,8 @@ return (
 }
 
 const Container = styled.div`
-    width: 70%;
-    margin:  -40px auto 90px auto;
+    width: 75%;
+    margin:  30px auto 90px auto;
 
 
     div{
@@ -79,7 +72,7 @@ const Container = styled.div`
     }
 
 
-    @media only screen  and (max-width: 767px) {
+    @media only screen  and (max-width: 1075px) {
       display: none;
     }
 `;

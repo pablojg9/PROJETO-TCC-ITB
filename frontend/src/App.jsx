@@ -8,12 +8,14 @@ import Checkout from './components/Checkout';
 import Home from './components/Home';
 import Login from './components/Login';
 import Payment from './components/Payment';
-import SignUp from './components/SignUp';
+import AddProduct from './components/AddProduct';
 
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import Category from './components/Category';
-
+import SignUp from './components/SignUp';
+import Orders from './components/Orders';
+import Search from "./components/SearchBook";
 
 
 const promise = loadStripe(
@@ -28,8 +30,9 @@ function App() {
         <Routes>
           <Route  path="/"  element={<Home />} />
           <Route  path="/login"  element={<Login />} />
-          <Route path='checkout' element={<Checkout/>} />
+          <Route path='/checkout' element={<Checkout/>} />
           <Route  path="/signup"  element={<SignUp />} />
+          <Route path="/search" element={<Search />} />
           <Route  path="/address"  element={<Address />} />
           <Route  
             path="/payment" 
@@ -37,10 +40,10 @@ function App() {
             <Elements stripe={promise} >
               <Payment />
             </Elements>
-            }
-            />
+            } />
 
-
+            <Route path="/addproduct" element={<AddProduct />}/>
+            <Route path="/orders" element={<Orders />}/>
           <Route  path="/category"  element={<Category />} />
 
         </Routes>
@@ -50,7 +53,13 @@ function App() {
 }
 
 const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default App

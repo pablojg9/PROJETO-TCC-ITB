@@ -1,6 +1,7 @@
 package com.itb.tcc.amazbook.amazbook.modules.category.model;
 
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryRequest;
+import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity

@@ -40,42 +40,27 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                                                 "/api/book/",
                                                 "/api/book/name/**",
                                                 "/api/book/id/**",
-                                                "/api/usuarios/save",
+                                               "/api/usuarios/save",
                                                 "/api/endereco/**"*/
                         "/api/**"
-                                                )
+                )
                 .permitAll()
+                .antMatchers("/login")
+                .hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/index")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().
                 addFilterBefore(
                         new JWTLoginFilter("/login", authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new JWTApiAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JWTApiAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .cors();
     }
-
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // TODO - Service que irá consultar o user no banco de dados
         auth.userDetailsService(implementationUserDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder()); // Padrão de codificação de senha para o user
-
-
-
-    }
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 }

@@ -3,8 +3,11 @@ package com.itb.tcc.amazbook.amazbook.modules.livro.service;
 import com.itb.tcc.amazbook.amazbook.exceptions.ValidationException;
 import com.itb.tcc.amazbook.amazbook.modules.category.model.Category;
 import com.itb.tcc.amazbook.amazbook.modules.category.service.CategoryService;
+
+
+import com.itb.tcc.amazbook.amazbook.modules.file.service.FileService;
 import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroRequest;
-import com.itb.tcc.amazbook.amazbook.modules.livro.controller.LivroResponse;
+import com.itb.tcc.amazbook.amazbook.modules.livro.dto.LivroResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import com.itb.tcc.amazbook.amazbook.modules.livro.repository.LivroRepository;
 
@@ -12,6 +15,7 @@ import com.itb.tcc.amazbook.amazbook.utils.ErrorUtil;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +30,8 @@ public class LivroService {
     private final LivroRepository livroRepository;
     private final CategoryService categoryService;
 
+    private final FileService fileService;
+
     public List<LivroResponse> findAll() {
         return livroRepository
                 .findAll()
@@ -36,10 +42,25 @@ public class LivroService {
 
     public LivroResponse save(LivroRequest livroRequest) {
         validateBookDataInformed(livroRequest);
+
         Category category = categoryService.findById(livroRequest.getCategoryId());
+        //FilesBook filesBook = fileService.findById(livroRequest.getFilesId());
+
         var livro = livroRepository.save(Livro.of(livroRequest, category));
 
         return LivroResponse.of(livro);
+    }
+
+    public List<LivroResponse> findByCategoryId(Integer categoryId) {
+        if (isEmpty(categoryId)) {
+            throw new ValidationException(ErrorUtil.CATEGORY_EMPTY);
+        }
+
+        return livroRepository
+                .findByCategoryId(categoryId)
+                .stream()
+                .map(LivroResponse::of)
+                .collect(Collectors.toList());
     }
 
     public LivroResponse deleteById(Integer id) {
@@ -52,7 +73,7 @@ public class LivroService {
 
         if (livroResponse != null) {
             livroRepository
-                    .deleteRemedioByWithId(id);
+                    .deletelivroByWithId(id);
         } else {
             throw new ValidationException(ErrorUtil.ID_EMPTY);
         }
@@ -87,6 +108,7 @@ public class LivroService {
         validateInformedId(id);
 
         Category category = categoryService.findById(livroRequest.getCategoryId());
+        //FilesBook filesBook = fileService.findById(livroRequest.getFilesId());
 
         Livro livro = Livro.of(livroRequest, category);
         livro.setId(id);

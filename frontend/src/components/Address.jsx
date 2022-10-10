@@ -5,13 +5,14 @@ import styled from 'styled-components'
 import { useStateValue } from '../StateProvider';
 import Footer from './Footer';
 import Header from './Header';
+import PaymentMethod from './PaymentMethod';
+
 
 function Address() {
 
   const [{}, dispatch] = useStateValue()
   const [fullName, setFullName] = useState("")
   const [phone, setPhone] = useState("")
-  const [flat, setFlat] = useState("")
   const [area, setArea] = useState("")
   const [landmark, setLandmark] = useState("")
   const [city, setCity] = useState("")
@@ -28,7 +29,6 @@ function Address() {
             item: {
                 fullName,
                 phone,
-                flat,
                 area,
                 landmark,
                 city,
@@ -46,7 +46,7 @@ function Address() {
         <Main>
           <FormContainer>
                   <InputContainer>
-                      <p>Full Name</p>
+                      <p>Nome</p>
                       <input 
                       onChange={(e) => setFullName(e.target.value)} 
                       type="text" 
@@ -61,14 +61,6 @@ function Address() {
                       type="text" 
                       value={phone}
                       />
-                  </InputContainer>
-
-                  <InputContainer>
-                      <p>Lozalização</p>
-                      <input 
-                      onChange={(e) => setFlat(e.target.value)} 
-                      type="text" 
-                      value={flat}/>
                   </InputContainer>
 
                   <InputContainer>
@@ -111,6 +103,8 @@ function Address() {
           </FormContainer>
         </Main>
 
+        <PaymentMethod />
+
         <Footer />
     </Container>
   )
@@ -118,7 +112,6 @@ function Address() {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
   margin: auto;
   background-color: rgb(234, 237, 237);
   position: relative;
@@ -126,6 +119,7 @@ const Container = styled.div`
 
 const Main = styled.div`
   padding: 15px;
+  margin: 50px 0 60px 0;
 `;
 
 
@@ -147,11 +141,16 @@ const FormContainer = styled.div`
     height: 33px;
     width: 250px;
     margin-top: 20px;
-    background-color: purple;
+    background-color: orange;
     border: none;
     outline: none;
     border-radius: 5px;
     cursor: pointer;
+
+    &:hover{
+            border: 2px solid black;
+        }
+
    }
 `;
 
@@ -173,7 +172,7 @@ const InputContainer = styled.div`
         margin-top: 5px;
 
         &:hover{
-            border: 1px solid purple
+            border: 1px solid 
         }
     }
 `;

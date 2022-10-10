@@ -1,38 +1,50 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/Fa';
 import { GiHamburgerMenu } from 'react-icons/Gi';
+import Api from '../api/Api';
 
+const DropdownCategory = () => {
 
+    const [isActive, setIsActive] = useState();
+    const navigate = useNavigate();
+    
+    const [category, setCategory] = useState([]);
 
- function DropdownCategory() {
+    useEffect(() => {
+        Api.get("/api/category").then((response) => {
+            //console.log("id", response.data[0].id);
+            setCategory(response.data);
 
-  const [isActive, setIsActive] = useState();
-  const navigate = useNavigate();
+            category.map((category) => {
+                localStorage.setItem("teste", category.id);
+            })
 
-  return (
-    <>
-       <DropdownContainer>
-            <DropdownHover onClick={e => setIsActive(!isActive)}><GiHamburgerMenu /> <p>Categorias</p> <FaChevronDown /></DropdownHover>
-        </DropdownContainer>
-        {isActive && (
-              <DropdownContent>
-                <DropdownItems onClick={() => navigate('/category')}><span>Ação</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Aventura</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Comedia</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Crime</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Drama</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Ficcção</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Mangá</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Mistério</span></DropdownItems>
-                <DropdownItems onClick={() => navigate('/category')}><span>Romance</span></DropdownItems>
-        </DropdownContent>
-        )}
-    </>
-  )
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [])
+
+    return (
+        <>
+            <DropdownContainer>
+                <DropdownHover onClick={e => setIsActive(!isActive)}><GiHamburgerMenu /><p>Categorias</p> <FaChevronDown /></DropdownHover>
+            </DropdownContainer>
+            {isActive && (
+                <DropdownContent>
+                    {
+                        category && category.map((category) => (
+                            <DropdownItems onClick={() => navigate('/category')}><span>{category.nameCategory}</span></DropdownItems>
+                        ))
+                    }
+                </DropdownContent>
+            )}
+        </>
+    )
 };
+
+
 
 const DropdownContainer = styled.div`
     height: 70px;
@@ -40,7 +52,6 @@ const DropdownContainer = styled.div`
     flex-direction: column;
     margin-left: 100px;
     position: relative;
-
 `;
 
 
@@ -65,12 +76,19 @@ const DropdownContent = styled.div`
     margin-left: 100px;
     margin-top: -30px;
     position: absolute;
-    border: 1px solid black;
+
+    border-left: 0.2px solid black;
+    border-right: 0.2px solid black;
+
 `;
 
 const DropdownItems = styled.div`
     padding:10px;
-    border: 0.2px solid black;
+    border-bottom: 0.2px solid black;
+
+    &:nth-child(1){
+        border-top: 0.2px solid black;
+        }
 
 
     &:hover{

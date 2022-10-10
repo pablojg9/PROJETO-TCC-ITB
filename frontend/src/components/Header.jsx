@@ -1,73 +1,144 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Api from '../api/Api';
 import { useStateValue } from '../StateProvider';
 
-
-function Header() {
+const Header = () => {
 
     const [{ basket }] = useStateValue(false);
     const navigate = useNavigate();
 
+    const nome = localStorage.getItem("nome");
+    const token = localStorage.getItem("token");
 
-  return (
-    <Container>
-       <Inner>
-        <Logo onClick={() => navigate('/')}>
-            <img src="./logo.png" alt="" />
-        </Logo>
-            
+    const [searchLivro, setSearchLivro] = useState("");
 
-        <SearchBar>
-            <input type="text" placeholder='Search...'/>
-            <SearchIcon>
-                <img src="./searchicon.png" alt="" />
-            </SearchIcon>
-        </SearchBar>
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        navigate("/search")
 
-        <RightContainer>
+        await Api.get(`/api/book/name/${searchLivro}`).then((response) => {
+            localStorage.setItem("livros", JSON.stringify(response.data));
+            window.location.reload();
 
-            <NavButton onClick={() => navigate('/login')}>
-                <p>Hellow</p>
-                <p>Guest</p>
-            </NavButton>
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 
-            <NavButton onClick={() => navigate('/')}>
-                <p>Return</p>
-                <p>& Orders</p>
-            </NavButton>
+    return (
+        <Container>
+            <Inner>
+                <Logo onClick={() => navigate('/')}>
+                    <img src="./whitelogo.png" alt="" />
+                </Logo>
 
-            <BasketButton onClick={() => navigate('/checkout')}>
-                <img src="./basket-icon.png" alt="" />
-                <p>{basket?.length}</p>
-            </BasketButton>
-        </RightContainer>
-       </Inner>
+                <SearchBar>
+                    <input onChange={(e) => setSearchLivro(e.target.value)} ontype="text" placeholder='O que está procurando?' />
 
-       <MobileSearchBar>
-            <input type="text" placeholder='Search...'/>
-            <SearchIcon>
-                <img src="./searchicon.png" alt="" />
-            </SearchIcon>
-        </MobileSearchBar>
+                    <SearchIcon onClick={onSubmit}>
+                        <img src="./searchicon.png" alt="" />
+                    </SearchIcon>
+                </SearchBar>
 
-    </Container>
+                <RightContainer>
+                    <NavButton>
+                        <p>Olá</p>
+                        {
+                            token ? (
+                                <p>{nome}</p>
+                            ) :
+                                (
+                                    <p onClick={() => navigate("/login") }>Visitante</p>
+                                )
+                        }
+                        {
+                            token ? (
 
-  )
+                                <NavbarDropdownContent>
+
+                                    <DropdownItem onClick={() => {
+                                        localStorage.removeItem("token");
+                                        localStorage.removeItem("nome");
+                                        navigate("/")
+                                        window.location.reload();
+                                    }}>
+                                        <span>Sair</span>
+                                    </DropdownItem>
+                                </NavbarDropdownContent>
+                            ) : <p></p>
+                        }
+                    </NavButton>
+
+                    {
+                        token ? (
+
+                            <NavButton onClick={() => navigate('/orders')}>
+                                <p>Seus</p>
+                                <p>Pedidos</p>
+                            </NavButton>
+                        ) : (
+
+                            <NavButton onClick={() => navigate('/login')}>
+                                <p>Seus</p>
+                                <p>Pedidos</p>
+                            </NavButton>
+                        )
+                    }
+
+                    {
+                        token ? (
+                            <BasketButton onClick={() => navigate("/checkout")}>
+                                <img src="./basket.png" alt="" />
+
+                                <BasketBG>
+                                    <p>{basket?.length}</p>
+                                </BasketBG>
+                            </BasketButton>
+                        ) :
+                            <BasketButton onClick={() => navigate("/login")}>
+                                <img src="./basket.png" alt="" />
+
+                                <BasketBG>
+                                    <p>{basket?.length}</p>
+                                </BasketBG>
+                            </BasketButton>
+                    }
+
+
+
+                </RightContainer>
+            </Inner>
+
+            <MobileSearchBar>
+                <input type="text" placeholder='Search...' />
+                <SearchIcon>
+                    <img src="./searchicon.png" alt="" />
+                </SearchIcon>
+            </MobileSearchBar>
+
+        </Container>
+
+    )
 }
 
 const Container = styled.div`
-    width: 100%;
+    max-width: 100%;
     height: 100px;
     background-color: #131921;
     display: flex;
     align-items: center;
     position: relative;
 
-    @media only screen and (max-width: 767px){
-        height: 120px;
+    @media only screen and (max-width: 1000px){
+        height: 180px;
         padding: 20px;
         flex-direction: column;
+    }
+
+    @media only screen and (max-width: 770px){
+        height: 230px;
     }
 `;
 
@@ -77,8 +148,13 @@ const Inner = styled.div`
     display: flex;
     align-items: center;
 
-    @media only screen and (max-width: 767px){
+    @media only screen and (max-width: 1000px){
         justify-content: space-between;
+    }
+
+    @media only screen and (max-width: 770px){
+        display: flex;
+        flex-direction: column;
     }
 `;
 
@@ -88,8 +164,13 @@ const Logo = styled.div`
         cursor: pointer;
 
     img{
-        width: 50px;
+        width: 300px;
     }
+
+    @media only screen and (max-width: 770px){
+        margin: auto;
+    }
+    
 `;
 
 
@@ -105,7 +186,7 @@ const SearchBar = styled.div`
         flex: 1;
         width: 100%;
         height: 100%;
-        border: none;
+        border: 2px solid orange;
         border-radius: 5px 0px 0px 5px;
 
         &::placeholder{
@@ -113,7 +194,7 @@ const SearchBar = styled.div`
         }
     }
 
-    @media only screen and (max-width: 767px){
+    @media only screen and (max-width: 1000px){
         display: none;
     }
 `;
@@ -131,6 +212,7 @@ const MobileSearchBar = styled.div`
         border-top-left-radius: 0%;
         border-radius: 5px 0px 0px 5px;
         border: none;
+        border: 1px solid orange;
 
 
         &::placeholder{
@@ -138,26 +220,24 @@ const MobileSearchBar = styled.div`
         }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 999px) {
         display: none;
     }
 
 `;
 
 const SearchIcon = styled.div`
-    background-color: #D1AE6C;
-    height: 100%;
+    background-color: orange;
+    height: 39px;
     width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 0px 5px 5px 0;
 
     img{
         width: 22px;
     }
-    
 `;
 
 const RightContainer = styled.div`
@@ -168,13 +248,19 @@ const RightContainer = styled.div`
     height: 100%;
     padding: 5px 15px;
 
-    @media only screen and (max-width: 767px){
-
+    @media only screen and (max-width: 770px){
+        padding-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+        margin-left: 100px;
     }
+    
 `;
 
 const NavButton = styled.div`
-    color: #FFF;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
     padding: 5px;
     height: 80%;
     display: flex;
@@ -182,6 +268,20 @@ const NavButton = styled.div`
     justify-content: center;
     cursor: pointer;
     margin-right: 15px;
+
+
+    &:nth-child(1){
+    position: relative;
+    display: inline-block;
+    height: fit-content;
+
+    &:hover {
+      display: block;
+      >div {
+          display: block;
+      }
+    }
+    }
 
     p{
         &:nth-child(1){
@@ -195,6 +295,37 @@ const NavButton = styled.div`
     }
 `;
 
+const NavbarDropdownContent = styled.div`
+    display: none;
+
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 120px;
+    padding: 10px 5px 5px 7px;
+    margin-top: 5px;
+    margin-left: -30px;
+    z-index: 1;
+    color: black;
+    border-radius: 5px;
+
+    span:hover{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+
+`;
+
+const DropdownItem = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    span{
+        margin-bottom: 10px;
+    }
+`;
+
+
 const BasketButton = styled.div`
     display: flex;
     align-items: center;
@@ -203,15 +334,27 @@ const BasketButton = styled.div`
     cursor: pointer;
 
     img{
-        width: 30px;
-        margin-right: 10px;
+        width: 35px;
+        margin-right: 18px;
     }
 
     p{
-        color: #fff;
+        margin: 0 0 0 6px;
+        color: black;
         font-weight: 500;
     }
 `;
+
+const BasketBG = styled.div`
+    height: 22px;
+    width: 22px;
+    background-color: orange;
+    border-radius: 30px;
+    margin-left: -10px;
+    padding: 4px;
+
+`;
+
 
 
 export default Header

@@ -11,13 +11,13 @@ function Footer() {
     <Container>
         <SocialContainer>
             <Logo onClick={() => navigate('/')}>
-                <img src="./logo.png" alt="" />
+                <img src="./whitelogo.png" alt="" />
             </Logo>           
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem assumenda suscipit recusandae ipsa omnis excepturi itaque incidunt perferendis repellendus cum voluptate similique obcaecati, dolores commodi laboriosam magni aliquam qui? Nulla!</p>
+                        <p>O livro traz a vantagem de a gente poder estar só e ao mesmo tempo acompanhado. Livros não mudam o mundo, quem muda o mundo são as pessoas. Os livros só mudam as pessoas.</p>
                         <h5>Siga-nos</h5>
                         
                         <Socials>
-                            <div> <BsFacebook /></div>
+                            <div><BsFacebook /></div>
                             <div><BsYoutube  /></div>
                             <div><BsTwitter /></div>
                             <div><BsInstagram /></div>
@@ -61,15 +61,22 @@ const Container = styled.div`
     max-width: 100%;
     height: 100%;
     padding: 50px;
-    margin-top: 100px;
+    margin-top: 30px;
     background-color: #131921;
     display: flex;
     justify-content: center;
     align-items: center;
 
+
+    h5{
+        color: orange;
+    }
+
     @media only screen and (max-width: 767px){
         flex-direction: column;
         align-items: flex-start;
+
+
 }
 
 
@@ -90,7 +97,7 @@ const SocialContainer = styled.div`
     }
 
     @media only screen and (max-width: 1200px){
-        margin-top: 100px;
+        margin-top: 50px;
         height: 100%;
 
     }
@@ -99,11 +106,12 @@ const SocialContainer = styled.div`
 
 
 const Logo = styled.div`
-        margin-bottom: 30px;
         cursor: pointer;
+        margin-right: 200px;
+        margin-left: -50px;
 
     img{
-        width: 50px;
+        width: 300px;     
     }
 `;
 
@@ -119,10 +127,17 @@ const Socials = styled.div`
 const Categories = styled.div`
     margin-top: 10px;
     margin-left: 100px;
+
+    @media only screen and (max-width: 890px){
+       padding-left: 30px;
+    }
     
     @media only screen and (max-width: 767px){
        margin-top: 100px;
+       margin-left: 60px;
+
     }
+
    
 `;
 

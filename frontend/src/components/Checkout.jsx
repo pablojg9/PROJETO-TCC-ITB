@@ -6,7 +6,9 @@ import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from '../reducer';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
-    
+import PaymentMethod from './PaymentMethod';
+
+
 function Checkout() {
 
     const [{ basket }, dispatch] = useStateValue();
@@ -29,7 +31,7 @@ function Checkout() {
 
         <Main>
             <ShoppingCart>
-                <h2>Shopping Cart</h2>
+                <h2>Seu Carrinho</h2>
 
                 {basket?.map((product) => (
                         <Product>
@@ -54,13 +56,9 @@ function Checkout() {
                 <CurrencyFormat renderText={(value) => (
                     <>
                         <p>
-                            Subtotal({basket.length} items) 
+                            Total ({basket.length}) 
                             : <strong>{value}</strong>
                         </p>
-                        <small>
-                            <input type="checkbox" />
-                            <span>Este pedido contêm um presente</span>
-                        </small>
                     </>
                 )}
                     decimalScale={2}
@@ -73,6 +71,8 @@ function Checkout() {
                 <button onClick={() => navigate("/address")}>Continuar com o pagamento</button>
             </Subtotal>
         </Main>
+        
+        <PaymentMethod />
 
         <Footer />
     </Container>
@@ -149,10 +149,14 @@ const Subtotal = styled.div`
         width: 65%;
         height: 33px;
         margin-top: 20px;
-        background-color: #D1AE6C;
+        background-color: orange;
         border: none;
         outline: none;
         border-radius: 8px;
+
+        &:hover{
+            border: 2px solid black;
+        }
     }
 `;
 

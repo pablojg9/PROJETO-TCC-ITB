@@ -1,102 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from './Card';
 import Footer from './Footer';
 import Header from './Header';
 import Feature from './Feature';
 import DropdownCategory from './DropdownCategory';
 import styled from "styled-components";
-
+import PaymentMethod from './PaymentMethod';
+import Api from '../api/Api';
 
 const Category = () => {
+
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    Api.get(`/api/book/category/${3}`).then((response) => {
+      console.log(response.data);
+      setCategory(response.data)
+    }).catch((error) => {
+      console.log(error);
+    })
+  }, [])
+
   return (
     <Container>
       <Header />
       <DropdownCategory />
 
       <CategorySection>
-        <Filter>
-          <h1>Opções de Filtro</h1>
-          
-          <DropdownFilter>
-              Editor
-          </DropdownFilter>
-
-        </Filter>
 
         <BookGrid>
 
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
+          {
+            category && category.map((category) => (
+              <Card
+                id={category.id}
+                image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"}
+                price={category.valueBook}
+                rating={3}
+                author={category.author}
+                title={category.name}
+                category={category.category.nameCategory}
+              />
+            ))
 
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
+          }
 
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
-
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
-
-
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
-
-          <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
-
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
-
-
-        <Card
-          id={1}
-          image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"} 
-          price={2500}
-          rating={3}
-          title={"Vagabond"}
-          />
-
-          
         </BookGrid>
+
       </CategorySection>
 
-
       <Feature />
+
+      <PaymentMethod />
+
       <Footer />
     </Container>
   )
@@ -109,21 +65,16 @@ const Container = styled.div`
 `;
 
 const CategorySection = styled.div`
-  margin: 0 100px 0 100px;
+  margin: 0 100px -20px 100px;
   max-width: 100%;
 `;
 
-const Filter = styled.div`
-  width: 25%;
-`;
 
 const BookGrid = styled.div`
-  width: 75%;
+  width: 100%;
   display: grid;
     justify-content: center;
     place-items: center;
-     margin-left: 350px;
-
 
     grid-auto-rows: 420px 420px;
     grid-template-columns: repeat(4, 300px);
@@ -152,5 +103,5 @@ const DropdownFilter = styled.div`
 `;
 
 
-export default Category;
+export default Category
 

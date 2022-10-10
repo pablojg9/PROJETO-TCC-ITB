@@ -1,7 +1,8 @@
-package com.itb.tcc.amazbook.amazbook.modules.livro.controller;
+package com.itb.tcc.amazbook.amazbook.modules.livro.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.itb.tcc.amazbook.amazbook.modules.category.dto.CategoryResponse;
+import com.itb.tcc.amazbook.amazbook.modules.file.dto.FileResponse;
 import com.itb.tcc.amazbook.amazbook.modules.livro.model.Livro;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +21,11 @@ public class LivroResponse {
     private String name;
     private String author;
     private String publishingCompany;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate publicationDate;
+   /* @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate publicationDate;*/
     private Double valueBook;
     private CategoryResponse category;
+   // private FileResponse files;
 
     public LivroResponse(Livro livro) {
         name = livro.getName();
@@ -40,6 +42,7 @@ public class LivroResponse {
                 .publishingCompany(livro.getPublishingCompany())
                 .valueBook(livro.getValueBook())
                 .category(CategoryResponse.of(livro.getCategory()))
+         //       .files(FileResponse.of(livro.getFilesBook()))
                 .build();
     }
 }

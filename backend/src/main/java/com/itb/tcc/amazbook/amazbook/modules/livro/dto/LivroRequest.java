@@ -15,8 +15,8 @@ public class LivroRequest {
     private String publishingCompany;
     @JsonProperty("value_book")
     private Double valueBook;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate publicationDate;
+   /* @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate publicationDate;*/
     private Integer categoryId;
-
+   // private Integer filesId;
 }
