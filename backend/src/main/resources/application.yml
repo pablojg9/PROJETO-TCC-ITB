@@ -29,5 +29,5 @@ spring:
       max-request-size: 2MB
 
   file:
-    upload-dir: D:\\Pablo\\Documentos\\
+    upload-dir: D:\\Pablo\\Documentos\\images
 

@@ -7,9 +7,13 @@ import com.itb.tcc.amazbook.amazbook.modules.file.repository.FileRepository;
 import com.itb.tcc.amazbook.amazbook.modules.livro.repository.LivroRepository;
 import com.itb.tcc.amazbook.amazbook.utils.ErrorUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -17,11 +21,15 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
 @RequiredArgsConstructor
-public class FileService implements SaveMultiPartFile {
+public class FileService  {
 
     private final FileRepository fileRepository;
 
     private final LivroRepository livroRepository;
+
+
+    @Value("file.upload-file")
+    private String FILE_DIRECTORY;
 
     public FilesBook findById(Integer id) {
         validateInformedId(id);
@@ -37,24 +45,14 @@ public class FileService implements SaveMultiPartFile {
         }
     }
 
-    @Override
-    public FileRequest save(MultipartFile files, String idLivro) {
-        try {
-            uploadFile(files, idLivro);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     //TODO - FAZER O UPLOAD DA IMAGE DO LIVRO.
 
-    private void uploadFile(MultipartFile files, String idLivro) throws IOException {
-        byte[] data = files.getBytes();
-        String fileName = files.getOriginalFilename();
-        String type = files.getContentType();
-
-        livroRepository.findById(UUID.fromString(idLivro));
-
+    public Object uploadFile(MultipartFile file) throws IOException {
+        File convertFile = new File( FILE_DIRECTORY + file.getOriginalFilename());
+        convertFile.createNewFile();
+        FileOutputStream fout = new FileOutputStream(convertFile);
+        fout.write(file.getBytes());
+        fout.close();
+        return convertFile;
     }
 }

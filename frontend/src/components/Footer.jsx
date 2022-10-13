@@ -11,7 +11,7 @@ function Footer() {
     <Container>
         <SocialContainer>
             <Logo onClick={() => navigate('/')}>
-                <img src="./whitelogo.png" alt="" />
+                <img src="/whitelogo.png/" alt="" />
             </Logo>           
                         <p>O livro traz a vantagem de a gente poder estar só e ao mesmo tempo acompanhado. Livros não mudam o mundo, quem muda o mundo são as pessoas. Os livros só mudam as pessoas.</p>
                         <h5>Siga-nos</h5>
@@ -39,7 +39,7 @@ function Footer() {
                 <span>Romance</span>
                 <span>Terror</span>
                 <span></span>
-                <span>Veja Mais ></span>
+                <span>Veja Mais</span>
             </CategoriesList>
         </Categories>
 

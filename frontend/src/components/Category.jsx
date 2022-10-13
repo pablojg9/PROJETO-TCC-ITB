@@ -7,18 +7,20 @@ import DropdownCategory from './DropdownCategory';
 import styled from "styled-components";
 import PaymentMethod from './PaymentMethod';
 import Api from '../api/Api';
+import { useParams } from 'react-router-dom';
 
 const Category = () => {
 
   const [category, setCategory] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    Api.get(`/api/book/category/${3}`).then((response) => {
-      console.log(response.data);
-      setCategory(response.data)
+
+    Api.get(`/api/book/category/${id}`).then((response) => {
+      setCategory(response.data);
     }).catch((error) => {
       console.log(error);
-    })
+    });
   }, [])
 
   return (
@@ -31,20 +33,21 @@ const Category = () => {
         <BookGrid>
 
           {
-            category && category.map((category) => (
-              <Card
-                id={category.id}
-                image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"}
-                price={category.valueBook}
-                rating={3}
-                author={category.author}
-                title={category.name}
-                category={category.category.nameCategory}
-              />
-            ))
-
+            category.map((category, key) => {
+              return (
+                <Card 
+                  key={key}
+                  id={category.id}
+                  image={"https://images-na.ssl-images-amazon.com/images/I/91yUtx44+AL.jpg"}
+                  price={category.valueBook}
+                  rating={3}
+                  author={category.author}
+                  title={category.name}
+                  category={category.category.nameCategory}
+                />
+              )
+            })
           }
-
         </BookGrid>
 
       </CategorySection>

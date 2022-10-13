@@ -14,13 +14,7 @@ const DropdownCategory = () => {
 
     useEffect(() => {
         Api.get("/api/category").then((response) => {
-            //console.log("id", response.data[0].id);
             setCategory(response.data);
-
-            category.map((category) => {
-                localStorage.setItem("teste", category.id);
-            })
-
         }).catch((error) => {
             console.log(error);
         });
@@ -34,17 +28,20 @@ const DropdownCategory = () => {
             {isActive && (
                 <DropdownContent>
                     {
-                        category && category.map((category) => (
-                            <DropdownItems onClick={() => navigate('/category')}><span>{category.nameCategory}</span></DropdownItems>
-                        ))
+                        category.map((category, key) => {
+                            return (
+                                <DropdownItems key={key} onClick={() => {
+                                    navigate(`/category/${category.id}`)
+                                    window.location.reload();
+                                }}><span>{category.nameCategory}</span></DropdownItems>
+                            )
+                        })
                     }
                 </DropdownContent>
             )}
         </>
     )
 };
-
-
 
 const DropdownContainer = styled.div`
     height: 70px;

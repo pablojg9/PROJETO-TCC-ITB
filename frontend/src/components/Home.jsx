@@ -26,7 +26,7 @@ const Home = () => {
     <Container>
       <Header />
 
-      <DropdownCategory />
+      <DropdownCategory/>
 
       <Carousel />
 

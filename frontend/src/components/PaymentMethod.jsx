@@ -6,7 +6,7 @@ function PaymentMethod() {
     <Container>
         <PaymentImage>
           <span>Meios de Pagamento</span>
-          <img src="meiosdepagamento.png" alt="" />
+          <img src="/meiosdepagamento.png/" alt="" />
         </PaymentImage>
     </Container>
   )

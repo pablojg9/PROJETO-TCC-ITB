@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
 
 
@@ -10,12 +10,12 @@ import Login from './components/Login';
 import Payment from './components/Payment';
 import AddProduct from './components/AddProduct';
 
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import Category from './components/Category';
-import SignUp from './components/SignUp';
-import Orders from './components/Orders';
-import Search from "./components/SearchBook";
+import SignUp from './components/SignUp/';
+import Orders from './components/Orders/';
+import Search from "./components/SearchBook/";
 
 
 const promise = loadStripe(
@@ -28,23 +28,23 @@ function App() {
     <Router>
       <Container>
         <Routes>
-          <Route  path="/"  element={<Home />} />
-          <Route  path="/login"  element={<Login />} />
-          <Route path='/checkout' element={<Checkout/>} />
-          <Route  path="/signup"  element={<SignUp />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path='/checkout' element={<Checkout />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/search" element={<Search />} />
-          <Route  path="/address"  element={<Address />} />
-          <Route  
-            path="/payment" 
+          <Route path="/address" element={<Address />} />
+          <Route
+            path="/payment"
             element={
-            <Elements stripe={promise} >
-              <Payment />
-            </Elements>
+              <Elements stripe={promise} >
+                <Payment />
+              </Elements>
             } />
 
-            <Route path="/addproduct" element={<AddProduct />}/>
-            <Route path="/orders" element={<Orders />}/>
-          <Route  path="/category"  element={<Category />} />
+          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/category/:id" element={<Category />} />
 
         </Routes>
       </Container>

@@ -31,14 +31,14 @@ const Header = () => {
         <Container>
             <Inner>
                 <Logo onClick={() => navigate('/')}>
-                    <img src="./whitelogo.png" alt="" />
+                    <img src="/whitelogo.png/" alt="" />
                 </Logo>
 
                 <SearchBar>
                     <input onChange={(e) => setSearchLivro(e.target.value)} ontype="text" placeholder='O que está procurando?' />
 
                     <SearchIcon onClick={onSubmit}>
-                        <img src="./searchicon.png" alt="" />
+                        <img src="/searchicon.png/" alt="" />
                     </SearchIcon>
                 </SearchBar>
 
@@ -90,7 +90,7 @@ const Header = () => {
                     {
                         token ? (
                             <BasketButton onClick={() => navigate("/checkout")}>
-                                <img src="./basket.png" alt="" />
+                                <img src="/basket.png/" alt="" />
 
                                 <BasketBG>
                                     <p>{basket?.length}</p>
@@ -98,7 +98,7 @@ const Header = () => {
                             </BasketButton>
                         ) :
                             <BasketButton onClick={() => navigate("/login")}>
-                                <img src="./basket.png" alt="" />
+                                <img src="/basket.png/" alt="" />
 
                                 <BasketBG>
                                     <p>{basket?.length}</p>
@@ -114,7 +114,7 @@ const Header = () => {
             <MobileSearchBar>
                 <input type="text" placeholder='Search...' />
                 <SearchIcon>
-                    <img src="./searchicon.png" alt="" />
+                    <img src="/searchicon.png/" alt="" />
                 </SearchIcon>
             </MobileSearchBar>
 
