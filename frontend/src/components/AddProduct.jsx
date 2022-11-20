@@ -3,9 +3,8 @@ import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import Api from "../api/Api";
-// import axios from "../axios"
 
-function AddProduct() {
+const AddProduct = () => {
 
 
     const navigate = useNavigate()

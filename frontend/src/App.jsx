@@ -22,7 +22,7 @@ const promise = loadStripe(
   "pk_test_51LiZ0bDifAPYKrkMuW1z19J65uLgzWYOqTeMPDUQXhIhZwd6tAAMOyWDTd3e3cRstIVcIdKKZ2CnYLOQETwOnD0900HchoSOuj"
 );
 
-function App() {
+const App = () => {
 
   return (
     <Router>
